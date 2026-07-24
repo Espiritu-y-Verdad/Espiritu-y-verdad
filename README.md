@@ -1,3 +1,22 @@
 # Espíritu y Verdad
 
-El objetivo de este proyecto es crear una página web que sirva como un portal donde se puedan subir anuncios importantes del movimiento, visualizar las actividades a realizar, los oikos disponibles y que sirva como una herramienta para el monitoreo de métricas de importancia para los oikos.
+Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres; sabiendo que del Señor recibiréis la recompensa de la herencia, porque a Cristo el Señor servís.
+
+Colosenses 3:23-24
+
+## Clonar el repositorio
+
+Para obtener una copia del proyecto en tu computadora:
+
+```bash
+git clone https://github.com/Espiritu-y-Verdad/Espiritu-y-verdad.git
+cd Espiritu-y-verdad
+```
+
+## Guías para colaborar
+
+Leé estas guías antes de realizar cambios:
+
+- [Guía de colaboración](docs/guia_colaboracion.md): flujo de trabajo con Git Flow y Pull Requests.
+- [Guía de convenciones de commits](docs/guia_convenciones_commits.md): formato de los mensajes de commit.
+- [Guía de documentación](docs/guia_documentacion.md): qué, cuándo y cómo documentar el trabajo.
