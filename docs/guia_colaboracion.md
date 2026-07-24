@@ -43,7 +43,7 @@ Usá `feature/` para funcionalidades, `release/` para preparar versiones y `hotf
 ## Commits y Pull Requests
 
 - Hacé commits pequeños y con un solo propósito.
-- Seguí las reglas de [convenciones de commits](COMMIT_CONVENTIONS.md).
+- Seguí las reglas de [convenciones de commits](guia_convenciones_commits.md).
 - Explicá en el Pull Request qué cambió y cómo lo verificaste.
 - Antes de pedir revisión, actualizá tu rama con su base y resolvé conflictos localmente.
 
