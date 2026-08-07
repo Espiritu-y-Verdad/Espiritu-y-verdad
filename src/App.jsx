@@ -61,9 +61,7 @@ function App() {
 
         <section className="map-area" aria-labelledby="map-title">
           <div className="map-heading">
-            <div><p className="eyebrow">ENCONTRANOS</p><h2 id="map-title">Nuestras ubicaciones</h2></div>
-            <p>Arrastrá el mapa, acercate y tocá un pin para ver más información.</p>
-          </div>
+            <div><h2 id="map-title">Nuestras ubicaciones</h2></div>`r`n          </div>
           <ChurchMap />
         </section>
       </section>
