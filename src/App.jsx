@@ -39,7 +39,7 @@ const locations = [
     name: 'Oikos Santo Domingo Oeste',
     description: 'Atención, información y acompañamiento para nuestra comunidad.',
     address: 'Santo Domingo Norte, República Dominicana',
-    coordinates: [18.188614, -69.992105],
+    coordinates: [18.488645, -69.992106],
     images: [
       'office',
       'campus',
