@@ -120,14 +120,18 @@ function LocationModal({ location, onClose }) {
 
 function App() {
   const [selectedLocation, setSelectedLocation] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
   const selectLocation = useCallback((location) => setSelectedLocation(location), [])
 
   return (
     <main className="page-shell">
       <header className="site-header">
         <a className="brand" href="#inicio">Espíritu y Verdad</a>
-        <nav aria-label="Navegación principal">
-          {navigation.map((item) => <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>)}
+        <button className="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((isOpen) => !isOpen)}>
+          <span /><span /><span />
+        </button>
+        <nav id="primary-navigation" className={menuOpen ? 'open' : ''} aria-label="Navegación principal">
+          {navigation.map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>)}
         </nav>
       </header>
 
