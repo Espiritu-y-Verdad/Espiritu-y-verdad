@@ -5,10 +5,10 @@ const navigation = ['Inicio', 'Nosotros', 'Creencias', 'Ministerios', 'Comunidad
 
 const locations = [
   {
-    name: 'OIKOS Santo Domingo Norte',
+    name: 'OIKOS Distrito Nacional',
     description: 'Nuestro campus principal: un lugar para conectar, crecer y servir.',
     address: 'Santo Domingo Norte, República Dominicana',
-    coordinates: [18.4861, -69.9312],
+    coordinates: [18.459616, -69.911104],
     images: [
       'campus',
       'community',
@@ -16,20 +16,30 @@ const locations = [
     ],
   },
   {
-    name: 'Salón juvenil',
+    name: 'Oikos Santo Domingo Norte',
     description: 'Un espacio diseñado para acompañar a la próxima generación.',
     address: 'Santo Domingo Norte, República Dominicana',
-    coordinates: [18.4894, -69.9274],
+    coordinates: [18.548306, -69.866969],
     images: [
       'youth',
       'community',
     ],
   },
   {
-    name: 'Oficina OIKOS',
+    name: 'Oikos Santo Domingo Este',
     description: 'Atención, información y acompañamiento para nuestra comunidad.',
     address: 'Santo Domingo Norte, República Dominicana',
-    coordinates: [18.4824, -69.9368],
+    coordinates: [18.479831, -69.872131],
+    images: [
+      'office',
+      'campus',
+    ],
+  },
+  {
+    name: 'Oikos Santo Domingo Oeste',
+    description: 'Atención, información y acompañamiento para nuestra comunidad.',
+    address: 'Santo Domingo Norte, República Dominicana',
+    coordinates: [18.188614, -69.992105],
     images: [
       'office',
       'campus',
