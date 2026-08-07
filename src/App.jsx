@@ -83,7 +83,14 @@ function LocationModal({ location, onClose }) {
   const whatsappMessage = encodeURIComponent(`Hola, quiero más información sobre ${location.name}.`)
   const whatsappUrl = `https://wa.me/18094444019?text=${whatsappMessage}`
 
-  useEffect(() => setSlide(0), [location])
+  useEffect(() => {
+    setSlide(0)
+    const interval = window.setInterval(() => {
+      setSlide((current) => (current + 1) % imageCount)
+    }, 5000)
+
+    return () => window.clearInterval(interval)
+  }, [location, imageCount])
 
   function changeSlide(direction) {
     setSlide((current) => (current + direction + imageCount) % imageCount)
