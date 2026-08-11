@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
+import logoMev from './assets/logo-negro-MEV.png'
 
 const navigation = ['Inicio', 'Nosotros', 'Creencias', 'Ministerios', 'Comunidad', 'Eventos', 'Contacto']
 
@@ -51,7 +52,7 @@ function ChurchMap({ onLocationSelect }) {
   const element = useRef(null)
 
   useEffect(() => {
-    const map = L.map(element.current, { scrollWheelZoom: false }).setView([18.4861, -69.9312], 14)
+    const map = L.map(element.current, { scrollWheelZoom: false })
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
@@ -68,6 +69,8 @@ function ChurchMap({ onLocationSelect }) {
     locations.forEach((location) => {
       L.marker(location.coordinates, { icon }).addTo(map).on('click', () => onLocationSelect(location))
     })
+
+    map.fitBounds(L.latLngBounds(locations.map(({ coordinates }) => coordinates)), { padding: [42, 42] })
 
     return () => map.remove()
   }, [onLocationSelect])
@@ -118,13 +121,26 @@ function LocationModal({ location, onClose }) {
   )
 }
 
+function IntroScreen({ onComplete }) {
+  return (
+    <div className="intro-screen" role="status" aria-label="Cargando Espíritu y Verdad" onAnimationEnd={(event) => {
+      if (event.target === event.currentTarget) onComplete()
+    }}>
+      <img className="intro-logo" src={logoMev} alt="Espíritu y Verdad" />
+    </div>
+  )
+}
+
 function App() {
   const [selectedLocation, setSelectedLocation] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showIntro, setShowIntro] = useState(true)
   const selectLocation = useCallback((location) => setSelectedLocation(location), [])
 
   return (
-    <main className="page-shell">
+    <>
+      {showIntro && <IntroScreen onComplete={() => setShowIntro(false)} />}
+      <main className="page-shell">
       <header className="site-header">
         <a className="brand" href="#inicio">Espíritu y Verdad</a>
         <button className="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((isOpen) => !isOpen)}>
@@ -137,7 +153,6 @@ function App() {
 
       <section className="oikos-section" id="inicio">
         <div className="video-area">
-          <h1>OIKOS</h1>
           <div className="video-placeholder">
             <span className="play-button" aria-hidden="true">▶</span>
             <div><strong>Video de bienvenida</strong><p>Este espacio queda preparado para insertar el video de la iglesia.</p></div>
@@ -145,13 +160,14 @@ function App() {
         </div>
 
         <section className="map-area" aria-labelledby="map-title">
-          <div className="map-heading"><div><h2 id="map-title">Nuestras ubicaciones</h2></div></div>
+          <div className="map-heading"><div><h2 id="map-title">UBICACIONES</h2></div></div>
           <ChurchMap onLocationSelect={selectLocation} />
         </section>
       </section>
 
       {selectedLocation && <LocationModal location={selectedLocation} onClose={() => setSelectedLocation(null)} />}
-    </main>
+      </main>
+    </>
   )
 }
 
