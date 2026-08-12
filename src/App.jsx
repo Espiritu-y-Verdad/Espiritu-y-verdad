@@ -122,10 +122,14 @@ function LocationModal({ location, onClose }) {
 }
 
 function IntroScreen({ onComplete }) {
+  useEffect(() => {
+    const timeout = window.setTimeout(onComplete, 2000)
+
+    return () => window.clearTimeout(timeout)
+  }, [onComplete])
+
   return (
-    <div className="intro-screen" role="status" aria-label="Cargando Espíritu y Verdad" onAnimationEnd={(event) => {
-      if (event.target === event.currentTarget) onComplete()
-    }}>
+    <div className="intro-screen" role="status" aria-label="Cargando Espíritu y Verdad">
       <img className="intro-logo" src={logoMev} alt="Espíritu y Verdad" />
     </div>
   )
