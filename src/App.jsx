@@ -2,6 +2,10 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import logoMev from './assets/logo-negro-MEV.png'
 import logoEspirituVerdad from './assets/logo-espiritu-verdad.png'
+import distritoNacionalPin from './assets/oikos-pins/oikos-distrito-nacional.PNG'
+import santoDomingoNortePin from './assets/oikos-pins/oikos-santo-domingo-norte.PNG'
+import santoDomingoEstePin from './assets/oikos-pins/oikos-santo-domingo-este.PNG'
+import santoDomingoOestePin from './assets/oikos-pins/oikos-santo-domingo-oeste.PNG'
 import './styles.css'
 
 const history = [
@@ -85,13 +89,27 @@ const locations = [
   { name: 'Oikos Santo Domingo Oeste', description: 'Atención, información y acompañamiento para nuestra comunidad.', address: 'Santo Domingo Norte, República Dominicana', coordinates: [18.488645, -69.992106], images: ['office', 'campus'] },
 ]
 
+const locationPins = {
+  [locations[0].name]: distritoNacionalPin,
+  [locations[1].name]: santoDomingoNortePin,
+  [locations[2].name]: santoDomingoEstePin,
+  [locations[3].name]: santoDomingoOestePin,
+}
+
 function ChurchMap({ onLocationSelect }) {
   const element = useRef(null)
   useEffect(() => {
     const map = L.map(element.current, { scrollWheelZoom: false })
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }).addTo(map)
-    const icon = L.divIcon({ className: 'church-marker-wrapper', html: '<span class="church-marker">✦</span>', iconSize: [34, 42], iconAnchor: [17, 42] })
-    locations.forEach((location) => L.marker(location.coordinates, { icon }).addTo(map).on('click', () => onLocationSelect(location)))
+    locations.forEach((location) => {
+      const locationIcon = L.divIcon({
+        className: 'church-marker-wrapper',
+        html: `<img class="church-marker church-marker-image" src="${locationPins[location.name]}" alt="" />`,
+        iconSize: [58, 82],
+        iconAnchor: [29, 79],
+      })
+      L.marker(location.coordinates, { icon: locationIcon }).addTo(map).on('click', () => onLocationSelect(location))
+    })
     map.fitBounds(L.latLngBounds(locations.map(({ coordinates }) => coordinates)), { padding: [42, 42] })
     return () => map.remove()
   }, [onLocationSelect])
