@@ -131,8 +131,12 @@ function DiscipuladoScreen() {
   </main>
 }
 
+function HomeScreen() {
+  return <main className="home-screen" aria-label="Inicio" />
+}
+
 function App() {
-  const getScreen = () => ({ '#quienes-somos': 'about', '#discipulado': 'discipulado' }[window.location.hash] || 'oikos')
+  const getScreen = () => ({ '#oikos': 'oikos', '#quienes-somos': 'about', '#discipulado': 'discipulado' }[window.location.hash] || 'home')
   const [screen, setScreen] = useState(getScreen)
 
   useEffect(() => {
@@ -142,6 +146,7 @@ function App() {
   }, [])
 
   const items = [
+    ['home', '#inicio', 'Inicio'],
     ['oikos', '#oikos', 'Oikos'],
     ['about', '#quienes-somos', 'Quiénes somos'],
     ['discipulado', '#discipulado', 'Discipulado'],
@@ -153,6 +158,7 @@ function App() {
       <div>{items.map(([id, href, label]) => <a key={id} href={href} className={screen === id ? 'active' : ''}>{label}</a>)}</div>
       <span className="screen-menu-index">0{items.findIndex(([id]) => id === screen) + 1}</span>
     </nav>
+    {screen === 'home' && <HomeScreen />}
     {screen === 'oikos' && <OikosScreen />}
     {screen === 'about' && <AboutScreen />}
     {screen === 'discipulado' && <DiscipuladoScreen />}
