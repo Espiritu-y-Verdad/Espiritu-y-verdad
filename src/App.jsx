@@ -119,9 +119,8 @@ function IntroScreen({ onComplete }) {
 
 function OikosScreen() {
   const [selectedLocation, setSelectedLocation] = useState(null)
-  const [showIntro, setShowIntro] = useState(true)
   const selectLocation = useCallback((location) => setSelectedLocation(location), [])
-  return <><>{showIntro && <IntroScreen onComplete={() => setShowIntro(false)} />}</><main className="oikos-original-page"><section className="oikos-section"><div className="video-area"><div className="video-placeholder"><span className="play-button" aria-hidden="true">▶</span><div><strong>Video de bienvenida</strong><p>Este espacio queda preparado para insertar el video de la iglesia.</p></div></div></div><section className="map-area" aria-labelledby="map-title"><div className="map-heading"><h2 id="map-title">UBICACIONES</h2></div><ChurchMap onLocationSelect={selectLocation} /></section></section></main>{selectedLocation && <LocationModal location={selectedLocation} onClose={() => setSelectedLocation(null)} />}</>
+  return <><main className="oikos-original-page"><section className="oikos-section"><div className="video-area"><div className="video-placeholder"><span className="play-button" aria-hidden="true">▶</span><div><strong>Video de bienvenida</strong><p>Este espacio queda preparado para insertar el video de la iglesia.</p></div></div></div><section className="map-area" aria-labelledby="map-title"><div className="map-heading"><h2 id="map-title">UBICACIONES</h2></div><ChurchMap onLocationSelect={selectLocation} /></section></section></main>{selectedLocation && <LocationModal location={selectedLocation} onClose={() => setSelectedLocation(null)} />}</>
 }
 
 function DiscipuladoScreen() {
@@ -138,12 +137,17 @@ function HomeScreen() {
 function App() {
   const getScreen = () => ({ '#oikos': 'oikos', '#quienes-somos': 'about', '#discipulado': 'discipulado' }[window.location.hash] || 'home')
   const [screen, setScreen] = useState(getScreen)
+  const [showIntro, setShowIntro] = useState(true)
 
   useEffect(() => {
     const onHashChange = () => setScreen(getScreen())
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
+
+  useEffect(() => {
+    setShowIntro(true)
+  }, [screen])
 
   const items = [
     ['home', '#inicio', 'Inicio'],
@@ -153,6 +157,7 @@ function App() {
   ]
 
   return <>
+    {showIntro && <IntroScreen key={screen} onComplete={() => setShowIntro(false)} />}
     <nav className="screen-menu" aria-label="Navegación entre pantallas">
       <span className="screen-menu-brand">E+V</span>
       <div>{items.map(([id, href, label]) => <a key={id} href={href} className={screen === id ? 'active' : ''}>{label}</a>)}</div>
