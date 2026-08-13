@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import logoMev from './assets/logo-negro-MEV.png'
+import logoEspirituVerdad from './assets/logo-espiritu-verdad.png'
 import './styles.css'
 
 const history = [
@@ -113,7 +114,7 @@ function LocationModal({ location, onClose }) {
 }
 
 function IntroScreen({ onComplete }) {
-  useEffect(() => { const timeout = window.setTimeout(onComplete, 2000); return () => window.clearTimeout(timeout) }, [onComplete])
+  useEffect(() => { const timeout = window.setTimeout(onComplete, 700); return () => window.clearTimeout(timeout) }, [onComplete])
   return <div className="intro-screen" role="status" aria-label="Cargando Espíritu y Verdad"><img className="intro-logo" src={logoMev} alt="Espíritu y Verdad" /></div>
 }
 
@@ -159,7 +160,7 @@ function App() {
   return <>
     {showIntro && <IntroScreen key={screen} onComplete={() => setShowIntro(false)} />}
     <nav className="screen-menu" aria-label="Navegación entre pantallas">
-      <span className="screen-menu-brand">E+V</span>
+      <a className="screen-menu-brand" href="#inicio" aria-label="Inicio"><img src={logoEspirituVerdad} alt="Espíritu y Verdad" /></a>
       <div>{items.map(([id, href, label]) => <a key={id} href={href} className={screen === id ? 'active' : ''}>{label}</a>)}</div>
       <span className="screen-menu-index">0{items.findIndex(([id]) => id === screen) + 1}</span>
     </nav>
