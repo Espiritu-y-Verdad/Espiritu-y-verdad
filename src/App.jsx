@@ -138,7 +138,7 @@ function HomeScreen() {
 function App() {
   const getScreen = () => ({ '#oikos': 'oikos', '#quienes-somos': 'about', '#discipulado': 'discipulado' }[window.location.hash] || 'home')
   const [screen, setScreen] = useState(getScreen)
-  const [showIntro, setShowIntro] = useState(true)
+  const [showIntro, setShowIntro] = useState(() => getScreen() === 'home')
 
   useEffect(() => {
     const onHashChange = () => setScreen(getScreen())
@@ -147,7 +147,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    setShowIntro(true)
+    setShowIntro(screen === 'home')
   }, [screen])
 
   const items = [
@@ -158,7 +158,7 @@ function App() {
   ]
 
   return <>
-    {showIntro && <IntroScreen key={screen} onComplete={() => setShowIntro(false)} />}
+    {screen === 'home' && showIntro && <IntroScreen onComplete={() => setShowIntro(false)} />}
     <nav className="screen-menu" aria-label="Navegación entre pantallas">
       <a className="screen-menu-brand" href="#inicio" aria-label="Inicio"><img src={logoEspirituVerdad} alt="Espíritu y Verdad" /></a>
       <div>{items.map(([id, href, label]) => <a key={id} href={href} className={screen === id ? 'active' : ''}>{label}</a>)}</div>
