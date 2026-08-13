@@ -134,7 +134,7 @@ function LocationModal({ location, onClose }) {
 function IntroScreen({ onComplete }) {
   useEffect(() => {
     document.body.classList.add('intro-active')
-    const timeout = window.setTimeout(onComplete, 4200)
+    const timeout = window.setTimeout(onComplete, 1750)
     return () => { window.clearTimeout(timeout); document.body.classList.remove('intro-active') }
   }, [onComplete])
 

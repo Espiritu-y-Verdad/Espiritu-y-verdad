@@ -29,9 +29,46 @@ a { color: inherit; text-decoration: none; }
 @keyframes intro-logo-wipe { from { clip-path:inset(0 0 0 0); opacity:1; } 99% { opacity:1; } to { clip-path:inset(0 100% 0 0); opacity:0; } }
 @keyframes intro-logo-arrive { 0% { transform:translate(-50%,-50%) scale(.05); opacity:0; } 28% { transform:translate(-50%,-50%) scale(.1); opacity:.7; } 62% { transform:translate(-50%,-50%) scale(.95); opacity:1; } 100% { transform:translate(-50%,-50%) scale(1); opacity:1; } }
 @keyframes intro-logo-expand { from { transform:translate(-50%,-50%) scale(1); } to { transform:translate(-50%,-50%) scale(1.4); } }
+/* Faster pass: keep the staged overlaps, while closing the intro at 3.05s. */
+.intro-logo { animation-duration:.85s,.4s; animation-delay:.1s,.95s; }
+.intro-site-reveal { animation-duration:.7s; animation-delay:1.05s; }
 @keyframes intro-site-unmask { 0% { clip-path:inset(0 0 0 99.5%); } 42% { clip-path:inset(0 0 0 94%); } 100% { clip-path:inset(0 0 0 0); } }
 @media (max-width:700px) { .screen-menu { top:8px; left:8px; width:calc(100% - 16px); min-height:54px; gap:18px; padding:8px 16px; font-size:10px; overflow-x:auto; }.screen-menu a.screen-menu-brand { width:74px; height:26px; }.screen-menu div { gap:16px; }.screen-menu a { padding:7px 0; }.oikos-home { padding-top:145px; }.oikos-intro h1 { font-size:29vw; }.oikos-plus { top:24%; }.oikos-message { margin-left:0; flex-direction:column; align-items:start; }.oikos-message span { font-size:8px; }.oikos-callout { width:100%; }.discipulado-placeholder { position:relative; right:auto; bottom:auto; margin:45px 0 0 auto; width:58vw; } }
 @media (prefers-reduced-motion:reduce) { .intro-logo,.intro-site-reveal { animation:none; }.intro-logo { opacity:1; transform:translate(-50%,-50%) scale(1); }.intro-site-reveal { clip-path:none; } }
 .church-marker-wrapper,
 .leaflet-marker-icon.church-marker-wrapper { width:58px !important; height:82px !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:transparent !important; box-shadow:none !important; }
 .church-marker.church-marker-image { display:block; width:58px; height:82px; margin:0; padding:0; border:0; border-radius:0; transform:none; object-fit:contain; background:transparent; box-shadow:none; filter:drop-shadow(0 2px 3px #0006); }
+
+/* Keep the editorial collage clear of the reading hierarchy. */
+.hero-title { max-width:min(52%, 680px); }
+.hero-title { z-index:5; }
+.hero-intro { z-index:5; }
+.hero-media { z-index:1; }
+.hero h1 { font-size:clamp(76px, 10.8vw, 165px); line-height:1.03; }
+.hero-intro { top:clamp(590px, 82svh, 630px); bottom:auto; }
+.cross-mark { display:none; }
+.hero-media-one { left:auto; right:21%; top:20%; }
+.hero-media-two { right:5%; top:34%; }
+.hero-media-three { left:auto; right:13%; top:58%; }
+.hero-media.reveal { transform:translateY(28px) rotate(-4deg); }
+.hero-media-two.reveal { transform:translateY(28px) rotate(4deg); }
+.hero-media-three.reveal { transform:translateY(28px) rotate(2deg); }
+
+.vision h2 { z-index:4; max-width:56%; }
+.vision-media { z-index:1; left:auto; right:7%; bottom:12%; }
+.vision-note { z-index:4; }
+
+@media (max-width:800px) {
+  .hero { min-height:900px; padding-bottom:80px; }
+  .hero-title { max-width:none; }
+  .hero h1 { line-height:.96; }
+  .hero-media-one { left:48%; right:auto; top:34%; }
+  .hero-media-two { right:6%; top:47%; }
+  .hero-media-three { left:31%; right:auto; top:60%; }
+  .hero-intro { bottom:8%; }
+  .hero-intro { top:auto; }
+  .vision { min-height:900px; }
+  .vision h2 { max-width:100%; }
+  .vision-media { left:auto; right:8%; bottom:17%; }
+  .vision-note { bottom:7%; }
+}
