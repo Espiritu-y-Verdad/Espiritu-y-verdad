@@ -114,8 +114,25 @@ function LocationModal({ location, onClose }) {
 }
 
 function IntroScreen({ onComplete }) {
-  useEffect(() => { const timeout = window.setTimeout(onComplete, 700); return () => window.clearTimeout(timeout) }, [onComplete])
-  return <div className="intro-screen" role="status" aria-label="Cargando Espíritu y Verdad"><img className="intro-logo" src={logoMev} alt="Espíritu y Verdad" /></div>
+  useEffect(() => {
+    document.body.classList.add('intro-active')
+    const timeout = window.setTimeout(onComplete, 5180)
+    return () => { window.clearTimeout(timeout); document.body.classList.remove('intro-active') }
+  }, [onComplete])
+
+  return <div className="intro-screen" role="status" aria-label="Cargando Espíritu y Verdad">
+    <img className="intro-logo" src={logoMev} alt="Espíritu y Verdad" />
+    <div className="intro-site-reveal" aria-hidden="true">
+      <div className="intro-site-header"><img src={logoEspirituVerdad} alt="" /><span>Inicio</span><span>Oikos</span><span>Quiénes somos</span><span>Discipulado</span></div>
+      <div className="intro-scroll-track">
+        <section className="intro-hero-art"><p>ESPÍRITU Y VERDAD</p><h2>UNA CASA<br />EN MOVIMIENTO.</h2><i /></section>
+        <section className="intro-graphic-art"><b>✦</b><span>COMUNIDAD<br />FE · ESPERANZA · AMOR</span></section>
+        <section className="intro-light-art"><p>CRECEMOS<br />JUNTOS</p><strong>HAY ESPACIO<br />PARA TI.</strong></section>
+        <section className="intro-list-art"><p>COMUNIDAD</p><span>OIKOS DISTRITO NACIONAL</span><span>OIKOS SANTO DOMINGO NORTE</span><span>OIKOS SANTO DOMINGO ESTE</span></section>
+        <section className="intro-final-art"><p>TESTIMONIOS</p><q>Una comunidad que vive la fe en movimiento.</q><i /></section>
+      </div>
+    </div>
+  </div>
 }
 
 function OikosScreen() {
