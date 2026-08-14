@@ -48,10 +48,9 @@ function AboutScreen() {
         <Reveal className="hero-media hero-media-one"><MediaPlaceholder /></Reveal>
         <Reveal className="hero-media hero-media-two"><MediaPlaceholder /></Reveal>
         <Reveal className="hero-media hero-media-three"><MediaPlaceholder /></Reveal>
-        <Reveal className="hero-intro"><p>UNA COMUNIDAD<br />QUE VIVE LA FE<br /><em>EN MOVIMIENTO.</em></p></Reveal>
       </section>
 
-      <section className="breath" id="nosotros"><Reveal><p>NO SOMOS UN LUGAR AL QUE SE LLEGA.<br />SOMOS UNA HISTORIA QUE SE COMPARTE.</p></Reveal></section>
+      <section className="breath about-description" id="nosotros" aria-labelledby="about-description-title"><Reveal><p className="eyebrow">QUIÉNES SOMOS</p><h2 id="about-description-title">UNA COMUNIDAD DE FE<br />CENTRADA EN <em>CRISTO.</em></h2><div className="about-description-copy"><p>Comunidad de fe centrada en Cristo como el todo de Dios; Él es nuestra revelación, nuestra doctrina, nuestro diseño y nuestra cultura. Vivimos en la realidad del Nuevo Pacto.</p><p>Hemos sido conocidos, escogidos y predestinados para ser hijos de Dios: llamados, justificados, santificados y glorificados conforme a su propósito. Somos hechura de Dios, creados en Cristo Jesús para las buenas obras que Él preparó de antemano para que anduviéramos en ellas.</p><p>Como cuerpo de Cristo hemos sido llamados a permanecer en Él y expresarlo, creciendo juntos hasta que Cristo sea formado y manifestado en nosotros.</p></div></Reveal></section>
 
       <section className="mission" aria-labelledby="mission-title">
         <div className="side-label"><span>02</span><b>NUESTRA MISIÓN</b></div>
