@@ -39,6 +39,37 @@ a { color: inherit; text-decoration: none; }
 .leaflet-marker-icon.church-marker-wrapper { width:58px !important; height:82px !important; margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:transparent !important; box-shadow:none !important; }
 .church-marker.church-marker-image { display:block; width:58px; height:82px; margin:0; padding:0; border:0; border-radius:0; transform:none; object-fit:contain; background:transparent; box-shadow:none; filter:drop-shadow(0 2px 3px #0006); }
 
+/* History collage replaces the linear timeline. */
+.history { min-height:auto; padding-bottom:110px; }
+.timeline { display:grid; grid-template-columns:minmax(210px,.72fr) minmax(460px,1.28fr); gap:clamp(42px,7vw,110px); align-items:center; margin:70px 5% 80px; padding-left:0; }
+.timeline::before { display:none; }
+.history-copy { max-width:290px; color:var(--ink); font:500 17px/1.52 'Playfair Display',serif; }
+.history-copy p { margin:0 0 28px; }
+.history-copy span { color:var(--wine); font:10px 'DM Mono',monospace; letter-spacing:.19em; }
+.history-collage { min-height:400px; position:relative; }
+.collage-item { width:52%; height:210px; position:absolute; margin:0; box-shadow:5px 8px 0 #18181818; }
+.collage-item .media-placeholder { height:100%; }
+.collage-item figcaption { position:absolute; right:10px; bottom:9px; color:#fff; font:10px 'DM Mono',monospace; letter-spacing:.16em; }
+.collage-1 { top:0; left:0; transform:rotate(-5deg); }
+.collage-2 { top:74px; right:0; transform:rotate(4deg); }
+.collage-3 { bottom:0; left:22%; transform:rotate(-1deg); }
+.history-video { position:relative; right:auto; bottom:auto; grid-column:1 / -1; justify-self:center; width:min(100%,650px); margin:0; transform:rotate(-1deg); }
+
+@media (max-width:800px) {
+  .timeline { grid-column:2; grid-template-columns:1fr; gap:36px; margin:48px 0 65px; padding-left:0; }
+  .history-copy { max-width:340px; }
+  .history-collage { min-height:350px; width:min(100%,460px); }
+  .collage-item { height:170px; }
+  .history-video { grid-column:1 / -1; width:90%; margin:0; }
+}
+
+@media (max-width:480px) {
+  .history { padding-bottom:80px; }
+  .history-collage { min-height:295px; }
+  .collage-item { height:135px; }
+  .history-copy { font-size:16px; }
+}
+
 /* Keep the editorial collage clear of the reading hierarchy. */
 .hero-title { max-width:min(52%, 680px); }
 .hero-title { z-index:5; }

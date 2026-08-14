@@ -70,9 +70,10 @@ function AboutScreen() {
         <div className="history-side"><span>04</span><b>NUESTRA HISTORIA</b></div>
         <Reveal className="history-heading"><p>CRÓNICA VIVA</p><h2 id="history-title">NUESTRA<br />HISTORIA</h2></Reveal>
         <div className="timeline">
-          {history.map((item, index) => <Reveal className={`timeline-entry entry-${index + 1}`} key={item.year}>
-            <div className="year"><span />{item.year}</div><p>{item.text}</p><MediaPlaceholder className={item.type} label={item.label} />
-          </Reveal>)}
+          <Reveal className="history-copy"><p>Una historia hecha de mesas compartidas, barrios abiertos y personas que decidieron caminar juntas. Cada etapa nos recuerda que la fe cobra sentido cuando se vive en comunidad.</p><span>2016 — HOY</span></Reveal>
+          <Reveal className="history-collage">
+            {history.map((item, index) => <figure className={`collage-item collage-${index + 1}`} key={item.year}><MediaPlaceholder className={item.type} label={item.label} /><figcaption>{item.year}</figcaption></figure>)}
+          </Reveal>
         </div>
         <Reveal className="history-video"><MediaPlaceholder label="[ VIDEO PLACEHOLDER ]" video /></Reveal>
       </section>
